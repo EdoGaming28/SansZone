@@ -8,7 +8,10 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 
 class Main extends PluginBase implements Listener{
-    
+   
+    private $eco;
+    private $region;
+
     public function onEnable(){
         $this->getLogger()->info("plugin enable");
         $this->getServer()->getPluginManager ()->registerEvents($this, $this);
@@ -16,7 +19,7 @@ class Main extends PluginBase implements Listener{
         $this->region = new Config($this->getDataFolder() . "region.yml", Config::YAML);
     }
     
-    public function onCheckLand($player){
+    public function onCheckLand(Player $player){
 	    //$result = "";
 	    if($this->region->get($player->getName()) == "Wilderness"){
 	        //$result = "Wilderness";
